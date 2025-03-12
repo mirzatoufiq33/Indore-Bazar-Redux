@@ -15,7 +15,7 @@ const ProductCard = ({product}) => {
     
        
 
-        <div className=' rounded-xl border border-[#928dab] p-4 shadow-sm  bg-white  rounded-sm   flex flex-col justify-center items-center space-y-4'>
+        <div className=' rounded-xl border border-[#928dab] p-4 shadow-sm  bg-white flex flex-col justify-center items-center space-y-4'>
           
 
           <img
