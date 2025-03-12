@@ -1,136 +1,86 @@
-import React, { useEffect } from 'react'
-import { FaShoppingCart  , FaHeart } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { getproduct } from '../feature/product/productSlice';
-import { useParams } from 'react-router-dom';
-import LoadingPage from '../components/LoadingPage';
-import { Add } from '../feature/Cart/CartSlice';
-import { toast } from 'react-toastify';
+import React, { useEffect } from "react";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { getproduct } from "../feature/product/productSlice";
+import { useParams } from "react-router-dom";
+import LoadingPage from "../components/LoadingPage";
+import { Add } from "../feature/Cart/CartSlice";
+import { toast } from "react-toastify";
 
+const ProductPage = () => {
+  const { Product, isLoading, isError, message } = useSelector((state) => state.Products);
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
-const Productpage = () => {
+  const handleAddToCart = (Product) => {
+    dispatch(Add(Product));
+    toast.success("Added to cart!");
+  };
 
-const {Product , isLoading , isError , message} = useSelector(state => state.Products)
-const dispatach = useDispatch()
-const {id} = useParams()
+  useEffect(() => {
+    dispatch(getproduct(id));
 
-const handleAddToCart = (Product) =>{
-    dispatach(Add(Product))
-}
-
-
-useEffect(() =>{
-    dispatach(getproduct(id))
-    if(isError){
-        toast.error(message)
+    if (isError) {
+      toast.error(message);
     }
-},[isError , message])
+  }, [id, dispatch]);
 
-if(isLoading){
-    <LoadingPage />
-}
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
-
-  <div className='p-5 min-h-screen bg-[#1f1c2c]  '>
-    {/* <BackButton/> */}
-    <div className="  flex items-center justify-center  mt-20">
-
-
-
-    <div className="  flex flex-col md:flex-row md:space-y-0  md:space-x-10  p-6 md:  md:m-0  m-3 bg-white    rounded-2xl">
-
-
-
-        <div>
-
-            <img 
-               src={Product?.image} className="w-72 hover:scale-105 duration-200 mx-auto "  alt=""/>
+    <div className="p-5 min-h-screen bg-[#1f1c2c] flex justify-center">
+      <div className="flex flex-col md:flex-row items-center w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6 md:p-8">
+        {/* Product Image */}
+        <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
+          <img
+            src={Product?.image}
+            className="w-60 md:w-72 hover:scale-105 transition duration-200"
+            alt={Product?.title}
+          />
         </div>
 
+        {/* Product Details */}
+        <div className="w-full md:w-1/2 space-y-5 text-center md:text-left">
+          <span className="bg-[#928dab] text-white text-xs px-3 py-1 rounded-full">
+            Free Shipping
+          </span>
 
+          <h1 className="text-2xl font-bold">{Product?.title}</h1>
 
-<div className="flex flex-col space-y-6 p-5 w-[50vw]">
+          <div className="space-y-2">
+            <p className="text-gray-500 line-through text-lg">${(Product?.price * 1.2).toFixed(2)}</p>
+            <p className="text-4xl font-bold text-[#1f1c2c]">${Product?.price}</p>
+            <p className="text-sm text-gray-600 leading-relaxed">{Product?.description}</p>
+          </div>
 
-
-
-    <div className="flex flex-col mb-4 space-y-3 text-center md:text-left">
-
-
-
-        <div >
-
-
-            <div className="bg-[#928dab] text-white rounded-full text-sm  px-3 py-1 inline-block ">
-        
-                Free Shipping 
-            
+          {/* Stock & Rating */}
+          <div className="flex flex-col md:flex-row items-center justify-between text-gray-700 text-sm">
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span>50+ pcs. in Stock</span>
             </div>
-            </div>
+            <div>⭐ {Product?.rating?.rate} ({Product?.rating?.count} reviews)</div>
+          </div>
 
-            <div className="text-2xl font-medium max-w-sm" >{Product?.title}</div>
+          {/* Buttons */}
+          <button
+            onClick={() => handleAddToCart(Product)}
+            className="w-full bg-[#1f1c2c] text-white text-lg rounded-lg py-3 shadow-md hover:bg-[#928dab] hover:text-black transition duration-200"
+          >
+            <FaShoppingCart className="inline-block mr-2" />
+            Add to Cart
+          </button>
 
-
-        <div className="flex flex-col mb-4 space-y-6 text-center md:text-left">
-            <p className="line-through">${Product?.price * 10}</p>
-            <p className="text-5xl font-bold ">${Product?.price}</p>
-            <p className="text-sm font-light text-gray-400">{Product?.description}</p>
+          <button className="w-full flex items-center justify-center border-2 border-gray-300 rounded-lg py-3 shadow-md hover:bg-opacity-30 transition duration-200">
+            <FaHeart className="text-red-500 w-6 h-6 mr-2" />
+            <span>Add to Wishlist</span>
+          </button>
         </div>
-
-
-        <div className="group">
-            <button onClick={() => handleAddToCart(Product)} className=" transition-all duration-150 w-full  bg-[#1f1c2c] text-white rounded-lg border  border-b-8  border-b-[#1f1c2c] group-hover:border-t-8 group-hover:border-b-0 group-hover:border-t-[#1f1c2c] group-hover:bg-[#1f1c2c] group-hover:shadow-lg">
-
-                <div className="px-8 py-4 duration-150 bg-[#928dab]  rounded-lg group-hover:bg-[#1f1c2c]">
-                    Add to cart 
-                </div>
-
-            </button>
-
-        </div>
-
-
-       <div className="flex items-center justify-between">
-       <span className="flex items-center space-x-3 group">
-            <div className="w-3 h-3 bg-green-400 rounded-full group-hover:animate-ping"></div>
-            <div className="text-sm ">50+ pcs. in Stock</div>
-        </span>
-            <div >Rating ⭐ {Product?.rating?.count}</div>
-       </div>
-
-
-        {/* <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-4  md:flex-row  ">
-
-            <button className="flex items-center justify-center py-3  px-5 border-2 border-gray-300 rounded-lg shadow-sm hover:bg-opavity-30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 ">
-                <FaShoppingCart className='w-8'/>
-                <span>Add to Cart </span>
-            </button>
-
-            <button className="flex items-center justify-center py-3  px-5 border-2 border-gray-300 rounded-lg shadow-sm hover:bg-opavity-30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 ">
-
-              <FaHeart className='w-8' />
-              
-                <span>Add to Wishlist </span>
-            </button>
-
-        
-        </div> */}
-
-
+      </div>
     </div>
-    
+  );
+};
 
-
-
-
-</div>
-
-
-    </div>
-</div>
-</div>
-
-  )
-}
-
-export default Productpage
+export default ProductPage;

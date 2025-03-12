@@ -1,60 +1,61 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logOutuser } from '../feature/auth/authSlice';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { logOutuser } from "../feature/auth/authSlice";
 
 const Navbar = () => {
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-    const {user }  = useSelector((state) => state.auth);
-
-
-   const dispatch = useDispatch()
-
-   const handleLohOut = () => {
-    dispatch(logOutuser())
-   }
-
+  const handleLogOut = () => {
+    dispatch(logOutuser());
+  };
 
   return (
-    <nav className=' p-5 bg-[#928dab] shadow-sm flex items-center justify-between '>
+    <nav className="p-5 bg-[#928dab] shadow-sm flex items-center justify-between">
+      {/* Logo */}
+      <Link to={"/"}>
+        <h1 className="font-bold text-xl uppercase text-[#1f1c2c] flex items-center">
+          Indore_Bazar
+        </h1>
+      </Link>
 
-       <Link to={"/"}> <h1 className='font-bold text-xl uppercase text[#1f1c2c]  flex items-center'>Indore_Bazar</h1>
-       </Link>
+      {/* Navigation Links */}
+      <div className="flex items-center space-x-3">
+        {!user ? (
+          <>
+            <Link
+              to={"/login"}
+              className="py-1 px-3 rounded-lg bg-[#1f1c2c] font-semibold text-white hover:-translate-y-0.5 transition duration-200"
+            >
+              Login
+            </Link>
 
-        <span className='flex space-x-3'>
+            <Link
+              to={"/register"}
+              className="py-1 px-3 rounded-lg bg-[#1f1c2c] font-semibold text-white hover:-translate-y-0.5 transition duration-200"
+            >
+              Register
+            </Link>
+          </>
+        ) : (
+          <div className="flex space-x-5 items-center">
+            {/* 👀 Hidden on Mobile & Tablet | Visible on Desktop */}
+            <h2 className="text-xl text-[#1f1c2c] font-semibold hidden lg:flex">
+              Hello, {user?.name} 👋
+            </h2>
 
-{!user ? (<>
-
-     <Link to={"/login"} className=' py-1 px-3  rounded-lg  bg-[#1f1c2c]  font-semibold  hover:-translate-y-0.5 duration-200  text-white'>Login</Link>
-
-<Link to={"/register"} className=' py-1 px-3  rounded-lg  bg-[#1f1c2c]   font-semibold hover:-translate-y-0.5 duration-200   text-white'>Register</Link>
-</>
-) 
-:
-( 
-<div className=' flex  space-x-5'>
-
-<h2 className=' text-xl  text-[#1f1c2c] ' >Hellow_{user?.name}</h2>
-
-<button className=' py-1 px-5  rounded-lg bg-red-600  text-white' 
-onClick={handleLohOut}
->
-  Logout</button>
-
-
-</div>
-)
-
-}
-       
-
-
-       
-        </span>
-
-
+            <button
+              className="py-1 px-5 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition duration-200"
+              onClick={handleLogOut}
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
