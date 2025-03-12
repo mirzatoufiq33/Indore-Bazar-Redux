@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../feature/auth/authSlice";
 import { toast } from "react-toastify";
 import LoadingPage from "../components/LoadingPage";
+import register from "../assets/register.png"
 
 const Register = () => {
   const { user, isSuccess, isLoading, isError, message } = useSelector((state) => state.auth);
@@ -75,7 +76,7 @@ const Register = () => {
               onChange={handleChange}
               type="text"
               placeholder="Enter your Name"
-              className="border border-gray-300 w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
+              className="bg-transparent border border-[#1f1c2c] placeholder:text-[#1f1c2c] focus:outline-none focus:bg-transparent w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
             />
 
             <input
@@ -84,7 +85,7 @@ const Register = () => {
               onChange={handleChange}
               type="email"
               placeholder="Enter your Email Address"
-              className="border border-gray-300 w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
+              className="bg-transparent border border-[#1f1c2c] placeholder:text-[#1f1c2c] focus:outline-none focus:bg-transparent w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
             />
 
             <input
@@ -93,7 +94,7 @@ const Register = () => {
               onChange={handleChange}
               type="password"
               placeholder="Enter your Password"
-              className="border border-gray-300 w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
+              className="bg-transparent border border-[#1f1c2c] placeholder:text-[#1f1c2c] focus:outline-none focus:bg-transparent w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
             />
 
             <input
@@ -102,7 +103,7 @@ const Register = () => {
               onChange={handleChange}
               type="password"
               placeholder="Confirm Password"
-              className="border border-gray-300 w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
+              className="bg-transparent border border-[#1f1c2c] placeholder:text-[#1f1c2c] focus:outline-none focus:bg-transparent w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
             />
 
             <button
@@ -132,7 +133,7 @@ const Register = () => {
         {/* Right Side - Image */}
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="https://img.freepik.com/premium-vector/virtual-shop-woman-looking-stilettos-internet-footwear-store-girl-with-numerous-bags-hand-looking-smartphone-touchscreen-flat-vector-illustration_776652-2648.jpg"
+            src={register}
             className="w-64 md:w-80 rounded-xl hover:scale-105 transition duration-150"
             alt="Register Illustration"
           />

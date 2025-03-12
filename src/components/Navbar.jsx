@@ -42,11 +42,11 @@ const Navbar = () => {
           <div className="flex space-x-5 items-center">
             {/* 👀 Hidden on Mobile & Tablet | Visible on Desktop */}
             <h2 className="text-xl text-[#1f1c2c] font-semibold hidden lg:flex">
-              Hello, {user?.name} 👋
+              Hello, {user?.name}👋
             </h2>
 
             <button
-              className="py-1 px-5 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition duration-200"
+              className="py-1 px-5 rounded-lg bg-[#1f1c2c]  text-white font-semibold hover:bg-red-700 transition duration-200"
               onClick={handleLogOut}
             >
               Logout

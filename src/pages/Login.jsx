@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../feature/auth/authSlice";
 import { toast } from "react-toastify";
 import LoadingPage from "../components/LoadingPage";
+import loginimage from "../assets/login.png"
 
 const Login = () => {
   const { user, isSuccess, isLoading, isError, message } = useSelector((state) => state.auth);
@@ -56,21 +57,22 @@ const Login = () => {
 
   return (
     <div className="p-5 min-h-screen bg-[#1f1c2c] flex justify-center items-center">
-      <div className="flex flex-col md:flex-row items-center justify-center rounded-xl space-y-6 md:space-y-0 md:space-x-10 bg-[#928dab] w-full max-w-4xl p-6 md:p-10 shadow-lg">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center rounded-xl space-y-6 md:space-y-0 md:space-x-10 bg-[#928dab] w-full max-w-4xl p-6 md:p-10 shadow-lg">
         {/* Left Side - Form */}
         <div className="p-4 w-full md:w-1/2 text-center md:text-left">
           <h2 className="font-mono text-3xl md:text-4xl font-bold mb-5">Login Here</h2>
           <p className="font-sans mb-6 text-gray-600">Log in to Your Account to Enjoy a Personalized Shopping Experience!</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <input
+             <input
               name="email"
               value={email}
               onChange={handleChange}
               type="email"
               placeholder="Enter your Email Address"
-              className="border border-gray-300 w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
-            />
+              className=" bg-transparent border border-[#1f1c2c] placeholder:text-[#1f1c2c] focus:outline-none focus:bg-transparent w-full p-3 rounded-md placeholder:font-sans placeholder:font-bold"
+            /> 
+
 
             <input
               name="password"
@@ -78,7 +80,7 @@ const Login = () => {
               onChange={handleChange}
               type="password"
               placeholder="Enter your Password"
-              className="border border-gray-300 w-full p-4 rounded-md placeholder:font-sans placeholder:font-light"
+              className=" bg-transparent border border-[#1f1c2c] placeholder:text-[#1f1c2c] focus:outline-none focus:bg-transparent w-full p-3 rounded-md placeholder:font-sans placeholder:font-bold"
             />
 
             <button
@@ -108,8 +110,8 @@ const Login = () => {
         {/* Right Side - Image */}
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="https://img.freepik.com/premium-photo/premium-quality-ecommerce-store-3d-illustrations_1266756-437.jpg"
-            className="w-64 md:w-80 hover:scale-110 transition duration-150"
+            src={loginimage}
+            className="w-64 md:w-auto  hover:scale-110 transition duration-150"
             alt="Login Illustration"
           />
         </div>
