@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { FaShoppingCart  , FaHeart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { getproduct } from '../feature/product/productslice';
+import { getproduct } from '../feature/product/productSlice';
 import { useParams } from 'react-router-dom';
 import LoadingPage from '../components/LoadingPage';
 import { Add } from '../feature/Cart/CartSlice';
