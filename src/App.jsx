@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import { BrowserRouter as Router , Routes , Route,  } from 'react-router-dom'
+import { HashRouter as Router , Routes , Route,  } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -9,8 +9,6 @@ import ProductPage from './pages/ProductPage'
 import Cart from './pages/Cart'
 import CartButton from './components/CartButton'
 import Footer from './components/Footer'
-// import Swiper from './components/Swiper'
-import Slider from './components/Swiper'
 
 
 const App = () => {
@@ -18,7 +16,6 @@ const App = () => {
   
  <Router>
     <Navbar/>
-    {/* <Slider /> */}
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/login' element={<Login/>}/>
