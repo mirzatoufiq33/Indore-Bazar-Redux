@@ -5,6 +5,7 @@ import { getproduct } from '../feature/product/productSlice';
 import { useParams } from 'react-router-dom';
 import LoadingPage from '../components/LoadingPage';
 import { Add } from '../feature/Cart/CartSlice';
+import { toast } from 'react-toastify';
 
 
 const Productpage = () => {
@@ -12,7 +13,6 @@ const Productpage = () => {
 const {Product , isLoading , isError , message} = useSelector(state => state.Products)
 const dispatach = useDispatch()
 const {id} = useParams()
-// console.log(Product)
 
 const handleAddToCart = (Product) =>{
     dispatach(Add(Product))
@@ -21,7 +21,10 @@ const handleAddToCart = (Product) =>{
 
 useEffect(() =>{
     dispatach(getproduct(id))
-},[])
+    if(isError){
+        toast.error(message)
+    }
+},[isError , message])
 
 if(isLoading){
     <LoadingPage />

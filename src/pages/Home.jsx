@@ -3,7 +3,7 @@ import bgimage from '../assets/image.png.png'
 import ProductCard from '../components/ProductCard'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getproducts } from '../feature/product/productslice';
+import { getproducts } from '../feature/product/productSlice';
 import LoadingPage from '../components/LoadingPage';
 
 const Home = () => {
