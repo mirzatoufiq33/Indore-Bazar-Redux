@@ -9,8 +9,6 @@ export const register = async(formData) =>{
    } catch (error) {
     console.log(error)
    }
-    
-
 }
 
 
