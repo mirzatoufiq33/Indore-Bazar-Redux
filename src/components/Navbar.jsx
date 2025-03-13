@@ -14,7 +14,11 @@ const Navbar = () => {
 
   return (
     <nav className="p-3 bg-[#928dab] shadow-sm flex items-center justify-between">
+
+
       {/* Logo */}
+
+
         <div className="flex items-center justify-center space-x-1"> 
         <img src={logo} className="w-10 rounded-full" alt="" />
       <Link to={"/"}>
@@ -23,6 +27,7 @@ const Navbar = () => {
         </h1>
       </Link>
         </div>
+        
 
       {/* Navigation Links */}
       <div className="flex items-center space-x-3">
