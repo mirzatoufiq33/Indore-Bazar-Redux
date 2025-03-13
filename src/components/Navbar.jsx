@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logOutuser } from "../feature/auth/authSlice";
+import logo from "../assets/logo.png"
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
@@ -12,13 +13,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="p-5 bg-[#928dab] shadow-sm flex items-center justify-between">
+    <nav className="p-3 bg-[#928dab] shadow-sm flex items-center justify-between">
       {/* Logo */}
+        <div className="flex items-center justify-center space-x-1"> 
+        <img src={logo} className="w-10 rounded-full" alt="" />
       <Link to={"/"}>
-        <h1 className="font-bold text-xl uppercase text-[#1f1c2c] flex items-center">
+        <h1 className="font-bold  text-xl uppercase text-[#1f1c2c] flex items-center">
           Indore_Bazar
         </h1>
       </Link>
+        </div>
 
       {/* Navigation Links */}
       <div className="flex items-center space-x-3">
