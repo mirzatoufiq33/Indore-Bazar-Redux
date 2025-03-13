@@ -63,7 +63,7 @@ const Register = () => {
 
   return (
     <div className="p-5 min-h-screen bg-[#1f1c2c] flex justify-center items-center">
-      <div className="flex flex-col md:flex-row items-center justify-center bg-[#928dab] rounded-xl w-full max-w-4xl p-6 md:p-10 shadow-lg">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center bg-[#928dab] rounded-xl w-full max-w-4xl p-6 md:p-10 shadow-lg">
         {/* Left Side - Form */}
         <div className="p-4 w-full md:w-1/2 text-center md:text-left">
           <h2 className="font-mono text-3xl md:text-4xl font-bold mb-5">Register Here</h2>

@@ -3,7 +3,7 @@ import CartItems from "../components/CartItems";
 import BillCart from "../components/BillCart";
 import { useSelector } from "react-redux";
 import LoadingPage from "../components/LoadingPage";
-import notfound from "../assets/load.gif";
+import notfound from "../assets/found.gif";
 
 const Cart = () => {
   const { Carts, isLoading, isError, message } = useSelector((state) => state.Cart);
